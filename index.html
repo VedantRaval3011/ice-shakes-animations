@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ice-shakes Animated Website</title>
+  <link rel="stylesheet" href="src/styles.css">
+  
+</head>
+<body>
+  <header>
+    <div id="logo">
+      <img src="/public/icon.png" alt="logo">
+    </div>
+    <ul id="routes">
+      <li>Gallery</li>
+      <li>Superpowers</li>
+      <li>Process</li>
+      <li>Why us</li>
+      <li>Testimonials</li>
+    </ul>
+
+    <div id="right-container">
+      <div id="buyIcon">
+        <img src="/public/bag.svg" alt="shopping-bag-icon">
+      </div>
+      <button id="getStartedBtn">Get Started</button>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <!-- Content here -->
+    <div id="text-container">
+      <h1 id="text">Choco <span>Choco</span></h1>
+    </div>
+
+    <div id="bottom-container">
+      <button id="leftbtn"><img src="./public/left.svg" alt="left button"></button>
+      <div id="shakes">
+        <img src="./public/vanilla.png" alt="vanilla shake">
+        <img src="./public/chocolate.png" alt="chocolate shake">
+        <img src="./public/strawberry.png" alt="strawberry shake">
+      </div>
+      <button id="rightbtn"><img src="./public/right.svg" alt="right button"></button>
+    </div>
+  </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const routes = document.getElementById('routes');
+
+    hamburger.addEventListener('click', () => {
+      routes.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+@font-face {
+  font-family: "Budge Regular";
+  src: url("../fonts/Budge-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Budge Line";
+  src: url("../fonts/Budge-Line.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Budge Shadow";
+  src: url("../fonts/Budge-Shadow.ttf");
+}
+
+@font-face {
+  font-family: "Budge Sans";
+  src: url("../fonts/Budge-Sans.ttf") format("opentype");
+  font-weight: normal;
+}
+
+/* General Styles */
+:root {
+  --chocolate-color: #a9613c;
+  --strawberry-color: #f03f59;
+  --vanilla-color: #ffc76f;
+  --white-color: #fceee1;
+  font-family: "Outfit", sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--chocolate-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+#logo img {
+  height: 40px;
+}
+
+#routes {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+#routes li {
+  cursor: pointer;
+  color: var(--white-color);
+}
+
+#buyIcon img {
+  height: 30px;
+  cursor: pointer;
+  color: var(--white-color);
+}
+
+#getStartedBtn {
+  padding: 10px 46px;
+  background-color: var(--white-color);
+  color: var(--chocolate-color);
+  border: none;
+  border-radius: 124px;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+}
+
+#right-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+section {
+  height: 91.2vh;
+  position: relative;
+  overflow-y: hidden;
+}
+
+#text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+
+  #text {
+    font-size: 34rem;
+    font-family: "Budge Shadow";
+    position: relative;
+    letter-spacing: 5px;
+    color: var(--white-color);
+  }
+
+  #text span {
+    position: absolute;
+    color: var(--chocolate-color);
+    font-size: 33.5rem;
+    top: 3%;
+    left: 1%;
+    font-family: "Budge Regular";
+    letter-spacing: 8px;
+  }
+}
+
+#shakes {
+  position: absolute; /* Relative to the section */
+  left: 50%; /* Horizontally center within the section */
+  transform: translate(-50%, -50%); /* Adjust for centering */
+  display: flex;
+  align-items: center; /* Align the bottoms of the shakes */
+  justify-content: center; /* Center the shakes horizontally */
+  gap: 0;
+}
+
+#shakes img {
+  object-fit: cover; /* Ensures the images maintain their aspect ratio */
+}
+
+#shakes img:nth-child(1) {
+  /* Vanilla shake */
+  width: 20rem;
+  height: auto;
+  margin-right: -10rem; /* Slight overlap */
+}
+
+#shakes img:nth-child(2) {
+  /* Chocolate shake */
+  width: 32rem;
+  height: auto;
+  margin-right: -1rem; /* Slight overlap */
+  z-index: 10;
+}
+
+#shakes img:nth-child(3) {
+  /* Strawberry shake */
+  width: 20rem;
+  height: auto;
+  margin-left: -10rem;
+}
+
+#bottom-container {
+  display: flex;
+  justify-content: space-evenly;
+  #leftbtn,
+  #rightbtn {
+    position: absolute;
+    top: 90%;
+    transform: translate(-50%, -50%);
+    width: 60px; /* Set a fixed width for the buttons */
+    height: 60px; /* Set a fixed height to make it circular */
+    border-radius: 50%; /* Makes the buttons circular */
+    border: none;
+    background-color: var(
+      --white-color
+    ); /* Use the white color from your variable */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+  }
+
+  #leftbtn img,
+  #rightbtn img {
+    width: 30px; /* Controls the size of the icon */
+    height: auto;
+  }
+
+  /* Positioning */
+  #leftbtn {
+    left: 20%;
+  }
+
+  #rightbtn {
+    left: 80%;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  #routes {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  #routes.active {
+    display: flex;
+  }
+
+  #routes li {
+    color: var(--chocolate-color);
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .hamburger div {
+    height: 3px;
+    background-color: var(--white-color);
+    border-radius: 5px;
+  }
+}
