@@ -1,61 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ice-shakes Animated Website</title>
-  <link rel="stylesheet" href="src/styles.css">
-  
-</head>
-<body>
-  <header>
-    <div id="logo">
-      <img src="/public/icon.png" alt="logo">
-    </div>
-    <ul id="routes">
-      <li>Gallery</li>
-      <li>Superpowers</li>
-      <li>Process</li>
-      <li>Why us</li>
-      <li>Testimonials</li>
-    </ul>
-
-    <div id="right-container">
-      <div id="buyIcon">
-        <img src="/public/bag.svg" alt="shopping-bag-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ice-shakes Animated Website</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <img src="/public/icon.png" alt="logo" />
       </div>
-      <button id="getStartedBtn">Get Started</button>
-      <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
+      <ul id="routes">
+        <li>Gallery</li>
+        <li>Superpowers</li>
+        <li>Process</li>
+        <li>Why us</li>
+        <li>Testimonials</li>
+      </ul>
+
+      <div id="right-container">
+        <div id="buyIcon">
+          <img src="/public/bag.svg" alt="shopping-bag-icon" />
+        </div>
+        <button id="getStartedBtn">Get Started</button>
+        <div class="hamburger" id="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-    </div>
-  </header>
-  <section>
-    <!-- Content here -->
-    <div id="text-container">
-      <h1 id="text">Choco <span>Choco</span></h1>
-    </div>
-
-    <div id="bottom-container">
-      <button id="leftbtn"><img src="./public/left.svg" alt="left button"></button>
-      <div id="shakes">
-        <img src="./public/vanilla.png" alt="vanilla shake">
-        <img src="./public/chocolate.png" alt="chocolate shake">
-        <img src="./public/strawberry.png" alt="strawberry shake">
+    </header>
+    <section>
+      <!-- Content here -->
+      <div id="text-container">
+        <h1 id="text">Choco <span>Choco</span></h1>
       </div>
-      <button id="rightbtn"><img src="./public/right.svg" alt="right button"></button>
-    </div>
-  </section>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const routes = document.getElementById('routes');
+      <div id="bottom-container">
+        <button id="leftbtn">
+          <img src="./public/left.svg" alt="left button" />
+        </button>
+        <div id="shakes">
+          <img src="./public/vanilla.png" alt="vanilla shake" />
+          <img src="./public/chocolate.png" alt="chocolate shake" />
+          <img src="./public/strawberry.png" alt="strawberry shake" />
+        </div>
+        <button id="rightbtn">
+          <img src="./public/right.svg" alt="right button" />
+        </button>
+      </div>
+    </section>
 
-    hamburger.addEventListener('click', () => {
-      routes.classList.toggle('active');
-    });
-  </script>
-</body>
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const routes = document.getElementById("routes");
+      const leftBtn = document.getElementById("leftbtn");
+      const rightBtn = document.getElementById("rightbtn");
+      const shakesContainer = document.getElementById("shakes");
+      const shakes = Array.from(shakesContainer.children);
+
+      hamburger.addEventListener("click", () => {
+        routes.classList.toggle("active");
+      });
+
+      //start shakes = ["vanilla","choco","berry"]
+      const leftShift = () => {
+        const first = shakes[0];
+        const second = shakes[1];
+        const third = shakes[2];
+
+        // Apply animations to the elements
+        first.style.transform = "translateX(13rem)";
+        first.style.width = "20rem";
+        first.style.zIndex = "1";
+
+        second.style.transform = "translateX(-13rem)";
+        second.style.width = "20rem";
+        second.style.zIndex = "1";
+
+        third.style.transform = "translateX(0)";
+        third.style.width = "32rem";
+        third.style.zIndex = "10";
+
+        // Wait for the animation to complete before reordering
+        setTimeout(() => {
+          // Reorder elements in the DOM
+          shakesContainer.appendChild(first);
+          shakes.push(shakes.shift()); //(after performing shift on shakes)["choco","berry"] and returns "vanilla"  --> (push the shifted item in shakes) [["choco","berry","vanilla"]
+          // resetStyles();
+        }, 500); // Matches CSS transition duration
+      };
+
+      const rightShift = () => {
+        const first = shakes[0];
+        const second = shakes[1];
+        const third = shakes[2];
+
+        // Apply animations to the elements
+        third.style.transform = "translateX(-13rem)";
+        third.style.width = "20rem"; 
+        third.style.zIndex = "1";
+
+        first.style.transform = "translateX(0rem)";
+        first.style.width = "32rem";
+        first.style.zIndex = "10";
+
+        second.style.transform = "translateX(13rem)";
+        second.style.width = "20rem";
+        second.style.zIndex = "1";
+
+        // Wait for the animation to complete before reordering
+        setTimeout(() => {
+          // Reorder elements in the DOM
+          shakesContainer.prepend(third);
+          shakes.unshift(shakes.pop());
+          //(performing pop to shakes)["vanilla,"choco"] and returns "berry" --> (after performing unshift on the returned value) ["berry","vanilla","choco"];
+          // resetStyles();
+        }, 500); // Matches CSS transition duration
+      };
+
+      
+      leftBtn.addEventListener("click", leftShift);
+      rightBtn.addEventListener("click", rightShift);
+    </script>
+  </body>
 </html>

@@ -119,41 +119,43 @@ section {
 }
 
 #shakes {
-  position: absolute; /* Relative to the section */
-  left: 50%; /* Horizontally center within the section */
-  transform: translate(-50%, -50%); /* Adjust for centering */
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-items: center; /* Align the bottoms of the shakes */
-  justify-content: center; /* Center the shakes horizontally */
-  gap: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 #shakes img {
-  object-fit: cover; /* Ensures the images maintain their aspect ratio */
+  position: absolute;
+  transition: all 0.5s ease;
 }
 
 #shakes img:nth-child(1) {
-  /* Vanilla shake */
   width: 20rem;
   height: auto;
-  margin-right: -10rem; /* Slight overlap */
+  transform: translateX(-13rem);
+  z-index: 1;
+  transition: all 0.4s ease;
 }
 
 #shakes img:nth-child(2) {
-  /* Chocolate shake */
   width: 32rem;
   height: auto;
-  margin-right: -1rem; /* Slight overlap */
+  transform: translateX(0);
   z-index: 10;
+  transition: all 0.4s ease;
 }
 
 #shakes img:nth-child(3) {
-  /* Strawberry shake */
   width: 20rem;
   height: auto;
-  margin-left: -10rem;
+  transform: translateX(13rem);
+  z-index: 1;
+  transition: all 0.4s ease;
 }
-
 #bottom-container {
   display: flex;
   justify-content: space-evenly;
