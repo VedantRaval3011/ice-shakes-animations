@@ -39,6 +39,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: var(--chocolate-color);
+  transition: background-color 0.5s ease; /* Later */
 }
 
 header {
@@ -98,13 +99,14 @@ section {
   justify-content: center;
   align-items: center;
   height: 90vh;
-
+  transition: color 0.5s ease;
   #text {
     font-size: 34rem;
     font-family: "Budge Shadow";
     position: relative;
     letter-spacing: 5px;
     color: var(--white-color);
+    transition: color 0.5s ease;
   }
 
   #text span {
@@ -115,7 +117,22 @@ section {
     left: 1%;
     font-family: "Budge Regular";
     letter-spacing: 8px;
+    transition: color 0.5s ease;
   }
+}
+
+
+/* Theme colors */
+.theme-vanilla {
+  background-color: var(--vanilla-color) !important;
+}
+
+.theme-chocolate {
+  background-color: var(--chocolate-color) !important;
+}
+
+.theme-strawberry {
+  background-color: var(--strawberry-color) !important;
 }
 
 #shakes {

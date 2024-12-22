@@ -42,9 +42,18 @@
           <img src="./public/left.svg" alt="left button" />
         </button>
         <div id="shakes">
-          <img src="./public/vanilla.png" alt="vanilla shake" />
-          <img src="./public/chocolate.png" alt="chocolate shake" />
-          <img src="./public/strawberry.png" alt="strawberry shake" />
+          <img
+            src="./public/vanilla.png"
+            alt="vanilla shake"
+            data-flavor="Vanilla" />
+          <img
+            src="./public/chocolate.png"
+            alt="chocolate shake"
+            data-flavor="Choco" />
+          <img
+            src="./public/strawberry.png"
+            alt="strawberry shake"
+            data-flavor="Berry" />
         </div>
         <button id="rightbtn">
           <img src="./public/right.svg" alt="right button" />
@@ -58,11 +67,45 @@
       const leftBtn = document.getElementById("leftbtn");
       const rightBtn = document.getElementById("rightbtn");
       const shakesContainer = document.getElementById("shakes");
+      const text = document.getElementById("text");
+      const textContainer = document.getElementById("text-container");
+      const textSpan = text.querySelector("span");
+      const body = document.body;
+      
       const shakes = Array.from(shakesContainer.children);
+      const themeConfig = {
+        vanilla: {
+          color: "var(--vanilla-color)",
+          background: "var(--vanilla-color)",
+          text: "Vanilla",
+        },
+        choco: {
+          color: "var(--chocolate-color)",
+          background: "var(--chocolate-color)",
+          text: "Choco",
+        },
+        berry: {
+          color: "var(--strawberry-color)",
+          background: "var(--strawberry-color)",
+          text: "Berry",
+        },
+      };
 
       hamburger.addEventListener("click", () => {
         routes.classList.toggle("active");
       });
+
+      function updateTheme(flavor) {
+        const flavorLower = flavor.toLowerCase();
+        const theme = themeConfig[flavorLower];
+
+        // Update text and colors
+        text.firstChild.textContent = `${theme.text} `;
+        textSpan.textContent = theme.text;
+        body.style.backgroundColor = theme.background;
+        textSpan.style.color = theme.color;
+        
+      }
 
       //start shakes = ["vanilla","choco","berry"]
       const leftShift = () => {
@@ -83,12 +126,16 @@
         third.style.width = "32rem";
         third.style.zIndex = "10";
 
+        updateTheme(third.dataset.flavor);
+        
         // Wait for the animation to complete before reordering
         setTimeout(() => {
           // Reorder elements in the DOM
           shakesContainer.appendChild(first);
           shakes.push(shakes.shift()); //(after performing shift on shakes)["choco","berry"] and returns "vanilla"  --> (push the shifted item in shakes) [["choco","berry","vanilla"]
           // resetStyles();
+          
+          
         }, 500); // Matches CSS transition duration
       };
 
@@ -99,7 +146,7 @@
 
         // Apply animations to the elements
         third.style.transform = "translateX(-13rem)";
-        third.style.width = "20rem"; 
+        third.style.width = "20rem";
         third.style.zIndex = "1";
 
         first.style.transform = "translateX(0rem)";
@@ -110,6 +157,8 @@
         second.style.width = "20rem";
         second.style.zIndex = "1";
 
+        updateTheme(first.dataset.flavor);
+
         // Wait for the animation to complete before reordering
         setTimeout(() => {
           // Reorder elements in the DOM
@@ -117,10 +166,9 @@
           shakes.unshift(shakes.pop());
           //(performing pop to shakes)["vanilla,"choco"] and returns "berry" --> (after performing unshift on the returned value) ["berry","vanilla","choco"];
           // resetStyles();
+          
         }, 500); // Matches CSS transition duration
       };
-
-      
       leftBtn.addEventListener("click", leftShift);
       rightBtn.addEventListener("click", rightShift);
     </script>
